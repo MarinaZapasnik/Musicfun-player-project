@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 
-export const  TrackDetail = () => {
+export const  TrackDetail = (props) => {
 
-  const selectedTrackId = null
+  const selectedTrackId = props.trackId
   const [selectedTrack, setSelectedTrack] = useState(null)
+
+  ////19-23 мин 
 
   useEffect(() => {
     if(!selectedTrackId) {
+      setSelectedTrack(null)
       return
     }
 
