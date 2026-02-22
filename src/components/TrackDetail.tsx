@@ -1,31 +1,29 @@
 import { useEffect, useState } from "react"
 
-export const  TrackDetail = (props) => {
+export const  TrackDetail = ({trackId}) => {
 
-  const selectedTrackId = props.trackId
+  
   const [selectedTrack, setSelectedTrack] = useState(null)
 
-  ////19-23 мин 
-
   useEffect(() => {
-    if(!selectedTrackId) {
+    if(!trackId) {
       setSelectedTrack(null)
       return
     }
 
-    fetch(`https://musicfun.it-incubator.app/api/1.0/playlists/tracks/${selectedTrackId}`, {
+    fetch(`https://musicfun.it-incubator.app/api/1.0/playlists/tracks/${trackId}`, {
       headers: {
         "api-key": import.meta.env.VITE_API_KEY,
       },
     })
       .then((res) => res.json())
       .then((json) => setSelectedTrack(json.data))
-  }, [selectedTrackId])
+  }, [trackId])
 
     return  <div>
           <h3>Details</h3>
-          {!selectedTrack && selectedTrackId && <span>Loading...</span>}
-          {!selectedTrack && !selectedTrackId && <span>Track is not selected</span>}
+          {!selectedTrack && trackId && <span>Loading...</span>}
+          {!selectedTrack && !trackId && <span>Track is not selected</span>}
           {selectedTrack && (
             <div>
               <h3>{`${selectedTrack.attributes.title}`}</h3>

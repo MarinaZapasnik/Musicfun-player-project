@@ -11,14 +11,18 @@ export type Track = {
 
 export const MainPage = () => {
 
-  const [trackId, setTrackId] = useState(null)
+  const handleOnTrackSelected = (id:string) => {
+    setTrackId(id)
+  }
+
+  const [trackId, setTrackId] = useState<string | null>(null)
   return (
     <div>
       
       <div style = {{display: 'flex', gap: '40px'}}>
-        <TrackList onTrackSelected={(id: string) => {
-          setTrackId(id)
-        }}/>
+        <TrackList 
+        selectedTrackId={trackId}
+        onTrackSelected={handleOnTrackSelected}/>
         <TrackDetail trackId={trackId}/>
       </div>
       
