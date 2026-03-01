@@ -1,9 +1,29 @@
+export type AttachmentsDto = {
+  url: string
+}
+
+export type TrackListItemAttributes = {
+  title: string
+  attachments: AttachmentsDto []
+}
+
+export type TrackListItemResource = {
+  id: string 
+  attributes: TrackListItemAttributes
+}
 
 
+type Props = {
+  track: TrackListItemResource
+  onSelect: (trackId: string) => void
+  isSelected: boolean
+}
 
-export const TrackItem = ({ track, onSelect, isSelected }) => {
+
+export const TrackItem = ({ track, onSelect, isSelected }  : Props) => {
 
   const handleClick = () => onSelect?.(track.id)
+  
   return (
     <li
       key={track.id}

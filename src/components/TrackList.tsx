@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react"
-import type { Track } from "../MainPage"
-import { TrackItem } from "./TrackItem"
+import { TrackItem, type TrackListItemResource } from "./TrackItem"
 
-export const TrackList = ({selectedTrackId, onTrackSelected}) => {
-  const [tracks, setTracks] = useState<Track[] | null>(null)
+
+type Props = {
+  selectedTrackId: string | null
+  onTrackSelected: (id : string | null) => void
+}
+
+
+export const TrackList = ({selectedTrackId, onTrackSelected} : Props) => {
+  const [tracks, setTracks] = useState<TrackListItemResource[] | null>(null)
 
   const handleReset = () => {
     
@@ -11,7 +17,7 @@ export const TrackList = ({selectedTrackId, onTrackSelected}) => {
         
   }
 
-  const handleClick = (trackId) => {
+  const handleClick = (trackId: string) => {
             onTrackSelected?.(trackId);
           };
 

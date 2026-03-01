@@ -3,15 +3,9 @@ import { TrackDetail } from "./components/TrackDetail"
 import { TrackList } from "./components/TrackList"
 
 
-export type Track = {
-  id: number
-  title: string
-  url: string
-}
-
 export const MainPage = () => {
 
-  const handleOnTrackSelected = (id:string) => {
+  const handleOnTrackSelected = (id: string | null): void => {
     setTrackId(id)
   }
 
@@ -21,8 +15,8 @@ export const MainPage = () => {
       
       <div style = {{display: 'flex', gap: '40px'}}>
         <TrackList 
-        selectedTrackId={trackId}
-        onTrackSelected={handleOnTrackSelected}/>
+          selectedTrackId={trackId}
+          onTrackSelected={handleOnTrackSelected}/>
         <TrackDetail trackId={trackId}/>
       </div>
       
