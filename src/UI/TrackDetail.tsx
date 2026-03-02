@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react"
+import { getTrack, type TrackDetailsRsourceData } from "../dal/api"
 
-export type TrackDetailsRsourceData = {
-  id: string
-  attributes: {
-    title: string
-    lyrics?: string | null
-  }
-}
+
 
 type Props = {
   trackId: string | null
@@ -23,13 +18,8 @@ export const  TrackDetail = ({trackId} : Props) => {
       return
     }
 
-    fetch(`https://musicfun.it-incubator.app/api/1.0/playlists/tracks/${trackId}`, {
-      headers: {
-        "api-key": import.meta.env.VITE_API_KEY,
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => setSelectedTrack(json.data))
+    const promise = getTrack(trackId)
+    promise.then((json) => setSelectedTrack(json.data))
   }, [trackId])
 
     return  <div>
