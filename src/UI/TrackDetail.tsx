@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getTrack, type TrackDetailsRsourceData } from "../dal/api"
+import { getTrack, type TrackDetailsResourceData } from "../dal/api"
 
 
 
@@ -10,7 +10,7 @@ type Props = {
 export const  TrackDetail = ({trackId} : Props) => {
 
   
-  const [selectedTrack, setSelectedTrack] = useState<TrackDetailsRsourceData | null>(null)
+  const [selectedTrack, setSelectedTrack] = useState<TrackDetailsResourceData | null>(null)
 
   useEffect(() => {
     if(!trackId) {

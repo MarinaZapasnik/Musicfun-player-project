@@ -1,16 +1,6 @@
-export type AttachmentsDto = {
-  url: string
-}
+import type { TrackListItemResource } from "../dal/api"
 
-export type TrackListItemAttributes = {
-  title: string
-  attachments: AttachmentsDto []
-}
 
-export type TrackListItemResource = {
-  id: string 
-  attributes: TrackListItemAttributes
-}
 
 
 type Props = {
