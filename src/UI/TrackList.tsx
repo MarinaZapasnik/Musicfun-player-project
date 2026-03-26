@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react"
+
+
+import { useTracks } from "../bll/useTracks"
 import { TrackItem } from "./TrackItem"
-import { getTracks, type TrackListItemResource } from "../dal/api"
+
 
 
 type Props = {
@@ -10,11 +12,12 @@ type Props = {
 
 
 export const TrackList = ({selectedTrackId, onTrackSelected} : Props) => {
-  const [tracks, setTracks] = useState<TrackListItemResource[] | null>(null)
 
-  const handleReset = () => {
+  const {tracks, refresh} = useTracks()
+  
+  const handleRefresh = () => {
     
-        onTrackSelected?.(null)
+        refresh()
         
   }
 
@@ -23,11 +26,6 @@ export const TrackList = ({selectedTrackId, onTrackSelected} : Props) => {
           };
 
 
-  useEffect(() => {
-  
-    getTracks()
-      .then((json) => setTracks(json.data))
-  }, [])
 
   if (tracks === null) {
     return (
@@ -46,7 +44,7 @@ export const TrackList = ({selectedTrackId, onTrackSelected} : Props) => {
   }
   return (
     <div>
-      <button onClick={handleReset}>reset</button>
+      <button onClick={handleRefresh}>refresh</button>
       <hr/>
       <ul>
         {tracks.map((track) => {
@@ -57,7 +55,6 @@ export const TrackList = ({selectedTrackId, onTrackSelected} : Props) => {
               key={track.id}
               track={track}
               isSelected={track.id === selectedTrackId}
-              
               onSelect={handleClick}
             />
           );

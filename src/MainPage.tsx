@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { TrackDetail } from "./UI/TrackDetail"
-import { TrackList } from "./UI/TrackList"
+import { TrackDetail } from "./ui/TrackDetail"
+import { TrackList } from "./ui/TrackList"
 
 
 export const MainPage = () => {
